@@ -1,0 +1,144 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('formulirs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('bangunans_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('ruangs_id')->constrained()->cascadeOnDelete();
+            $table->integer('pondasi_tahap1');
+            $table->integer('pondasi_tahap2');
+            $table->integer('kolom_volume');
+            $table->integer('kolom_tahap1');
+            $table->integer('kolom_tahap2a');
+            $table->integer('kolom_tahap2b');
+            $table->integer('kolom_tahap2c');
+            $table->integer('kolom_tahap2d');
+            $table->integer('kolom_tahap2e');
+            $table->integer('kolom_tahap2f');
+            $table->integer('kolom_tahap2g');
+            $table->integer('balok_volume');
+            $table->integer('balok_tahap1');
+            $table->integer('balok_tahap2a');
+            $table->integer('balok_tahap2b');
+            $table->integer('balok_tahap2c');
+            $table->integer('balok_tahap2d');
+            $table->integer('balok_tahap2e');
+            $table->integer('balok_tahap2f');
+            $table->integer('balok_tahap2g');
+            $table->integer('atap_volume');
+            $table->integer('atap_tahap1');
+            $table->double('atap_tahap2a');
+            $table->double('atap_tahap2b');
+            $table->double('atap_tahap2c');
+            $table->double('atap_tahap2d');
+            $table->double('atap_tahap2e');
+            $table->double('atap_tahap2f');
+            $table->double('atap_tahap2g');
+            $table->integer('dinding_volume');
+            $table->integer('dinding_tahap1');
+            $table->double('dinding_tahap2a');
+            $table->double('dinding_tahap2b');
+            $table->double('dinding_tahap2c');
+            $table->double('dinding_tahap2d');
+            $table->double('dinding_tahap2e');
+            $table->double('dinding_tahap2f');
+            $table->double('dinding_tahap2g');
+            $table->integer('plafond_volume');
+            $table->integer('plafond_tahap1');
+            $table->double('plafond_tahap2a');
+            $table->double('plafond_tahap2b');
+            $table->double('plafond_tahap2c');
+            $table->double('plafond_tahap2d');
+            $table->double('plafond_tahap2e');
+            $table->double('plafond_tahap2f');
+            $table->double('plafond_tahap2g');
+            $table->integer('lantai_volume');
+            $table->double('lantai_tahap2a');
+            $table->double('lantai_tahap2b');
+            $table->double('lantai_tahap2c');
+            $table->double('lantai_tahap2d');
+            $table->double('lantai_tahap2e');
+            $table->double('lantai_tahap2f');
+            $table->double('lantai_tahap2g');
+            $table->integer('kusen_volume');
+            $table->integer('kusen_tahap2a');
+            $table->integer('kusen_tahap2b');
+            $table->integer('kusen_tahap2c');
+            $table->integer('kusen_tahap2d');
+            $table->integer('kusen_tahap2e');
+            $table->integer('kusen_tahap2f');
+            $table->integer('kusen_tahap2g');
+            $table->integer('pintu_volume');
+            $table->integer('pintu_tahap2a');
+            $table->integer('pintu_tahap2b');
+            $table->integer('pintu_tahap2c');
+            $table->integer('pintu_tahap2d');
+            $table->integer('pintu_tahap2e');
+            $table->integer('pintu_tahap2f');
+            $table->integer('pintu_tahap2g');
+            $table->integer('jendela_volume');
+            $table->integer('jendela_tahap2a');
+            $table->integer('jendela_tahap2b');
+            $table->integer('jendela_tahap2c');
+            $table->integer('jendela_tahap2d');
+            $table->integer('jendela_tahap2e');
+            $table->integer('jendela_tahap2f');
+            $table->integer('jendela_tahap2g');
+            $table->integer('finishing_plafont_volume');
+            $table->double('finishing_plafont_tahap2a');
+            $table->double('finishing_plafont_tahap2b');
+            $table->double('finishing_plafont_tahap2c');
+            $table->double('finishing_plafont_tahap2d');
+            $table->double('finishing_plafont_tahap2e');
+            $table->double('finishing_plafont_tahap2f');
+            $table->double('finishing_plafont_tahap2g');
+            $table->integer('finishing_dinding_volume');
+            $table->double('finishing_dinding_tahap2a');
+            $table->double('finishing_dinding_tahap2b');
+            $table->double('finishing_dinding_tahap2c');
+            $table->double('finishing_dinding_tahap2d');
+            $table->double('finishing_dinding_tahap2e');
+            $table->double('finishing_dinding_tahap2f');
+            $table->double('finishing_dinding_tahap2g');
+            $table->integer('finishing_kusen_volume');
+            $table->double('finishing_kusen_tahap2a');
+            $table->double('finishing_kusen_tahap2b');
+            $table->double('finishing_kusen_tahap2c');
+            $table->double('finishing_kusen_tahap2d');
+            $table->double('finishing_kusen_tahap2e');
+            $table->double('finishing_kusen_tahap2f');
+            $table->double('finishing_kusen_tahap2g');
+            $table->double('instalasi_listrik_tahap2');
+            $table->double('instalasi_airbersih_tahap2');
+            $table->integer('drainaselimbah_volume');
+            $table->integer('drainaselimbah_tahap2a');
+            $table->integer('drainaselimbah_tahap2b');
+            $table->integer('drainaselimbah_tahap2c');
+            $table->integer('drainaselimbah_tahap2d');
+            $table->integer('drainaselimbah_tahap2e');
+            $table->integer('drainaselimbah_tahap2f');
+            $table->integer('drainaselimbah_tahap2g');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('formulirs');
+    }
+};
