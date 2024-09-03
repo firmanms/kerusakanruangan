@@ -36,8 +36,7 @@ class BackPanelProvider extends PanelProvider
                 'Data',
                 'Formulir',
                 'Master',
-                'Filament Shield',
-                'ACL'
+
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),

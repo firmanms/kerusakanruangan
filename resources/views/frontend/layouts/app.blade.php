@@ -51,7 +51,7 @@
         <ul>
           <li><a href="#hero" class="active">Beranda</a></li>
           <li><a href="#about">Tentang</a></li>
-          <li><a href="#features">Features</a></li>
+          {{-- <li><a href="#features">Features</a></li> --}}
           <li><a href="#faq">Faq</a></li>
           <li><a href="#contact">Kontak</a></li>
           <li><a href="/back">Masuk</a></li>
@@ -76,7 +76,7 @@
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
             <h1>Selamat Datang <span></span></h1>
-            <p>Di Self Assesment Penilaian Kerusakan Gedung</p>
+            <p>Simpel Kerudung Sistem Self Assesment Pelaporan Tingkat Kerusakan Gedung Pendidikan SD di Dinas Pendidikan Kab.  Bandung</p>
             <div class="d-flex">
               {{-- <a href="#about" class="btn-get-started">Get Started</a>
               <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> --}}
@@ -112,7 +112,7 @@
           <div class="col-xl-5 content">
             <h3>Tentang</h3>
             <h2>Simpel Kerudung</h2>
-            <p>Simpel Kerudung adalah sistem self-assessment yang dirancang untuk membantu evaluasi kerusakan pada gedung, khususnya gedung sekolah. Aplikasi ini memungkinkan pengguna, seperti staf sekolah atau pihak terkait, untuk melakukan penilaian mandiri terhadap kondisi fisik gedung sekolah. Dengan sistem ini, pengguna dapat mengidentifikasi kerusakan secara cepat dan efisien, serta melaporkan hasil penilaian untuk diambil tindakan lebih lanjut.</p>
+            <p>Sistem pelaporan tingkat kerusakan gedung pendidikan SD di dinas pendidikan kab.  Bandung adalah sistem self-assessment yang dirancang untuk membantu evaluasi kerusakan pada gedung, khususnya gedung sekolah. Aplikasi ini memungkinkan pengguna, seperti staf sekolah atau pihak terkait, untuk melakukan penilaian mandiri terhadap kondisi fisik gedung sekolah. Dengan sistem ini, pengguna dapat mengidentifikasi kerusakan secara cepat dan efisien, serta melaporkan hasil penilaian untuk diambil tindakan lebih lanjut.</p>
             <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           </div>
 
@@ -159,102 +159,7 @@
 
     </section><!-- /About Section -->
 
-    <!-- Features Section -->
-    <section id="features" class="features section">
 
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="features-item">
-              <i class="bi bi-eye" style="color: #ffbb2c;"></i>
-              <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="features-item">
-              <i class="bi bi-infinity" style="color: #5578ff;"></i>
-              <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="features-item">
-              <i class="bi bi-mortarboard" style="color: #e80368;"></i>
-              <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="features-item">
-              <i class="bi bi-nut" style="color: #e361ff;"></i>
-              <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="features-item">
-              <i class="bi bi-shuffle" style="color: #47aeff;"></i>
-              <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
-            <div class="features-item">
-              <i class="bi bi-star" style="color: #ffa76e;"></i>
-              <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
-            <div class="features-item">
-              <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
-              <h3><a href="" class="stretched-link">Midela Teren</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
-            <div class="features-item">
-              <i class="bi bi-camera-video" style="color: #4233ff;"></i>
-              <h3><a href="" class="stretched-link">Pira Neve</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
-            <div class="features-item">
-              <i class="bi bi-command" style="color: #b2904f;"></i>
-              <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
-            <div class="features-item">
-              <i class="bi bi-dribbble" style="color: #b20969;"></i>
-              <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
-            <div class="features-item">
-              <i class="bi bi-activity" style="color: #ff5828;"></i>
-              <h3><a href="" class="stretched-link">Verdo Park</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-          <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
-            <div class="features-item">
-              <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
-              <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
-            </div>
-          </div><!-- End Feature Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Features Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section light-background">

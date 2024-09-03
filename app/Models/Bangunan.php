@@ -41,5 +41,6 @@ class Bangunan extends Model
     {
         return $this->belongsTo(Formulir::class, 'bangunans_id');
     }
+    
 
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TanahResource\Pages;
 use App\Filament\Resources\TanahResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Auth;
 
 class ListTanahs extends ListRecords
 {
@@ -16,4 +17,5 @@ class ListTanahs extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\FormulirResource\Pages;
 use App\Filament\Resources\FormulirResource\RelationManagers;
+use App\Models\Bangunan;
 use App\Models\Formulir;
 use App\Models\Ruang;
 use Filament\Tables\Actions\Action;
@@ -53,7 +54,18 @@ class FormulirResource extends Resource
                                     ->default(Auth::user()->id),
                                 Forms\Components\Select::make('bangunans_id')
                                     ->label('Bangunan')
-                                    ->relationship('bangunans', 'nama_bangunan')
+                                    // ->relationship('bangunans', 'nama_bangunan')
+                                    ->options(function () {
+                                        $user = auth()->user();
+
+                                        // Jika pengguna adalah super_admin, tampilkan semua bangunan
+                                        if ($user->role === 'super_admin') {
+                                            return Bangunan::all()->pluck('nama_bangunan', 'id');
+                                        }
+
+                                        // Jika bukan super_admin, tampilkan bangunan terkait dengan pengguna
+                                        return Bangunan::where('user_id', $user->id)->pluck('nama_bangunan', 'id');
+                                    })
                                     ->searchable()
                                     // ->disabled(fn ($record) => $record ? $record->exists : false) // Menandai sebagai disabled jika record ada
                                     ->preload()
@@ -675,9 +687,11 @@ class FormulirResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('bangunans.nama_bangunan')
+                    ->label('Nama Bangunan')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ruangs.nama_ruang')
+                    ->label('Nama Ruangan')
                     ->numeric()
                     ->sortable(),
                 // Tables\Columns\TextColumn::make('pondasi_tahap1')
@@ -1036,14 +1050,25 @@ class FormulirResource extends Resource
                 Action::make('custom_button')
                 ->label('Formulir')
                 ->icon('heroicon-o-document-text')
-                ->url(fn ($record) => route('formulirruanga', $record->id)) // Mengarahkan ke route
+                ->url(fn ($record) => route('formulirruangan', $record->id)) // Mengarahkan ke route
                 ->openUrlInNewTab(), // Opsional: Buka di tab baru
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(function (Builder $query) {
+                $userId = Auth::id();
+                // Asumsikan bahwa pengguna memiliki metode atau properti untuk mendapatkan role
+                $roles = Auth::user()->roles->pluck('name'); // Atau metode lain jika berbeda
+                $roleNames = $roles->implode(', ');
+                if ($roleNames=='super_admin'){
+                    return $query;
+                }else{
+                return $query->where('user_id' ,$userId);
+                }
+            });
     }
 
     public static function getRelations(): array

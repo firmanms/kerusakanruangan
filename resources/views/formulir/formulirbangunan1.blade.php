@@ -51,8 +51,12 @@ th, td {
     </tr>
     <tr>
         <td style="text-align: left;">Nama Bangunan</td>
-        <td style="text-align: left;">: {{$formulir->ruangs->nama_ruang}}</td>
+        <td style="text-align: left;">: {{$formulir1->bangunans->nama_bangunan}}</td>
     </tr>
+    {{-- <tr>
+        <td style="text-align: left;">Nama Ruang</td>
+        <td style="text-align: left;">: {{$formulir1->ruangs->nama_ruang}}</td>
+    </tr> --}}
     <tr>
         <td style="text-align: left;">NUP (No Urut Perolehan)</td>
         <td style="text-align: left;">: </td>
@@ -71,7 +75,7 @@ th, td {
     </tr>
     <tr>
         <td style="text-align: left;">Luas Bangunan</td>
-        <td style="text-align: left;">: {{ $formulir->ruangs->luas }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jumlah Lantai : 1</td>
+        <td style="text-align: left;">: {{ $formulir1->bangunans->luas_tapak}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jumlah Lantai : {{$formulir->bangunans->jumlah_lantai}}</td>
     </tr>
 </table>
 <br>
@@ -158,29 +162,29 @@ th, td {
         <td>{{$pondasi_tahap1con}}</td>
         <td colspan="7">{{$pondasi_tahap2con}}</td>
         <td colspan="7"></td>
-        <td>{{$formulir->pondasi_tahap2}}%</td>
+        <td>{{$pondasi_tahap2p}}%</td>
         <td>{{$bobotpondasi=number_format(12, 2, '.', '')}}%</td>
-        <td>{{$sumtingkatpondasi=number_format($formulir->pondasi_tahap2*$bobotpondasi/100, 2, '.', '')}}%</td>
+        <td>{{$sumtingkatpondasi=number_format($pondasi_tahap2p*$bobotpondasi/100, 2, '.', '')}}%</td>
     </tr>
     <tr>
         <td>Kolom</td>
         <td>unit</td>
-        <td> {{$formulir->kolom_volume}} </td>
+        <td> {{$formulir1->jumlah_kolom}} </td>
         <td>{{$kolom_tahap1con}}</td>
-        <td>{{$formulir->kolom_tahap2a}}</td>
-        <td>{{$formulir->kolom_tahap2b}}</td>
-        <td>{{$formulir->kolom_tahap2c}}</td>
-        <td>{{$formulir->kolom_tahap2d}}</td>
-        <td>{{$formulir->kolom_tahap2e}}</td>
-        <td>{{$formulir->kolom_tahap2f}}</td>
-        <td>{{$formulir->kolom_tahap2g}}</td>
-        <td>{{$kolom1=number_format($formulir->kolom_tahap2a/$formulir->kolom_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$kolom2=number_format($formulir->kolom_tahap2b/$formulir->kolom_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$kolom3=number_format($formulir->kolom_tahap2c/$formulir->kolom_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$kolom4=number_format($formulir->kolom_tahap2d/$formulir->kolom_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$kolom5=number_format($formulir->kolom_tahap2e/$formulir->kolom_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$kolom6=number_format($formulir->kolom_tahap2f/$formulir->kolom_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$kolom7=number_format($formulir->kolom_tahap2g/$formulir->kolom_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{$formulir1->jml_kolomt2a}}</td>
+        <td>{{$formulir1->jml_kolomt2b}}</td>
+        <td>{{$formulir1->jml_kolomt2c}}</td>
+        <td>{{$formulir1->jml_kolomt2d}}</td>
+        <td>{{$formulir1->jml_kolomt2e}}</td>
+        <td>{{$formulir1->jml_kolomt2f}}</td>
+        <td>{{$formulir1->jml_kolomt2g}}</td>
+        <td>{{$kolom1=number_format($formulir1->jml_kolomt2a/$formulir1->jumlah_kolom*$satu, 2, '.', '')}}</td>
+        <td>{{$kolom2=number_format($formulir1->jml_kolomt2b/$formulir1->jumlah_kolom*$dua, 2, '.', '')}}</td>
+        <td>{{$kolom3=number_format($formulir1->jml_kolomt2c/$formulir1->jumlah_kolom*$tiga, 2, '.', '')}}</td>
+        <td>{{$kolom4=number_format($formulir1->jml_kolomt2d/$formulir1->jumlah_kolom*$empat, 2, '.', '')}}</td>
+        <td>{{$kolom5=number_format($formulir1->jml_kolomt2e/$formulir1->jumlah_kolom*$lima, 2, '.', '')}}</td>
+        <td>{{$kolom6=number_format($formulir1->jml_kolomt2f/$formulir1->jumlah_kolom*$enam, 2, '.', '')}}</td>
+        <td>{{$kolom7=number_format($formulir1->jml_kolomt2g/$formulir1->jumlah_kolom*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumkolom=number_format(($kolom1+$kolom2+$kolom3+$kolom4+$kolom5+$kolom6+$kolom7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotkolom=number_format(10, 2, '.', '')}}%</td>
         <td>{{$sumtingkatkolom=number_format($sumkolom*$bobotkolom/100, 2, '.', '')}}%</td>
@@ -188,22 +192,22 @@ th, td {
     <tr>
         <td>Balok</td>
         <td>unit</td>
-        <td> {{$formulir->balok_volume}} </td>
+        <td> {{$jumlah_balok}} </td>
         <td>{{$balok_tahap1con}}</td>
-        <td>{{$formulir->balok_tahap2a}}</td>
-        <td>{{$formulir->balok_tahap2b}}</td>
-        <td>{{$formulir->balok_tahap2c}}</td>
-        <td>{{$formulir->balok_tahap2d}}</td>
-        <td>{{$formulir->balok_tahap2e}}</td>
-        <td>{{$formulir->balok_tahap2f}}</td>
-        <td>{{$formulir->balok_tahap2g}}</td>
-        <td>{{$balok1=number_format($formulir->balok_tahap2a/$formulir->balok_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$balok2=number_format($formulir->balok_tahap2b/$formulir->balok_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$balok3=number_format($formulir->balok_tahap2c/$formulir->balok_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$balok4=number_format($formulir->balok_tahap2d/$formulir->balok_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$balok5=number_format($formulir->balok_tahap2e/$formulir->balok_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$balok6=number_format($formulir->balok_tahap2f/$formulir->balok_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$balok7=number_format($formulir->balok_tahap2g/$formulir->balok_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{$formulir1->jml_balokt2a}}</td>
+        <td>{{$formulir1->jml_balokt2b}}</td>
+        <td>{{$formulir1->jml_balokt2c}}</td>
+        <td>{{$formulir1->jml_balokt2d}}</td>
+        <td>{{$formulir1->jml_balokt2e}}</td>
+        <td>{{$formulir1->jml_balokt2f}}</td>
+        <td>{{$formulir1->jml_balokt2g}}</td>
+        <td>{{$balok1=number_format($formulir1->jml_balokt2a/$formulir1->jumlah_balok*$satu, 2, '.', '')}}</td>
+        <td>{{$balok2=number_format($formulir1->jml_balokt2b/$formulir1->jumlah_balok*$dua, 2, '.', '')}}</td>
+        <td>{{$balok3=number_format($formulir1->jml_balokt2c/$formulir1->jumlah_balok*$tiga, 2, '.', '')}}</td>
+        <td>{{$balok4=number_format($formulir1->jml_balokt2d/$formulir1->jumlah_balok*$empat, 2, '.', '')}}</td>
+        <td>{{$balok5=number_format($formulir1->jml_balokt2e/$formulir1->jumlah_balok*$lima, 2, '.', '')}}</td>
+        <td>{{$balok6=number_format($formulir1->jml_balokt2f/$formulir1->jumlah_balok*$enam, 2, '.', '')}}</td>
+        <td>{{$balok7=number_format($formulir1->jml_balokt2g/$formulir1->jumlah_balok*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumbalok=number_format(($balok1+$balok2+$balok3+$balok4+$balok5+$balok6+$balok7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotbalok=number_format(8, 2, '.', '')}}%</td>
         <td>{{$sumtingkatbalok=number_format($sumbalok*$bobotbalok/100, 2, '.', '')}}%</td>
@@ -211,22 +215,22 @@ th, td {
     <tr>
         <td>Atap</td>
         <td>%</td>
-        <td> {{$formulir->atap_volume}} </td>
+        <td> {{100}} </td>
         <td>{{$atap_tahap1con}}</td>
-        <td>{{$formulir->atap_tahap2a}}</td>
-        <td>{{$formulir->atap_tahap2b}}</td>
-        <td>{{$formulir->atap_tahap2c}}</td>
-        <td>{{$formulir->atap_tahap2d}}</td>
-        <td>{{$formulir->atap_tahap2e}}</td>
-        <td>{{$formulir->atap_tahap2f}}</td>
-        <td>{{$formulir->atap_tahap2g}}</td>
-        <td>{{$atap1=number_format($formulir->atap_tahap2a/$formulir->atap_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$atap2=number_format($formulir->atap_tahap2b/$formulir->atap_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$atap3=number_format($formulir->atap_tahap2c/$formulir->atap_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$atap4=number_format($formulir->atap_tahap2d/$formulir->atap_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$atap5=number_format($formulir->atap_tahap2e/$formulir->atap_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$atap6=number_format($formulir->atap_tahap2f/$formulir->atap_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$atap7=number_format($formulir->atap_tahap2g/$formulir->atap_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2a/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2b/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2c/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2d/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2e/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2f/$rekapatap)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_atapt2g/$rekapatap)*100)}}</td>
+        <td>{{$atap1=number_format(($formulir1->jml_atapt2a/$formulir1->jumlah_baris)/100*$satu, 2, '.', '')}}</td>
+        <td>{{$atap2=number_format(($formulir1->jml_atapt2b/$formulir1->jumlah_baris)/100*$dua, 2, '.', '')}}</td>
+        <td>{{$atap3=number_format(($formulir1->jml_atapt2c/$formulir1->jumlah_baris)/100*$tiga, 2, '.', '')}}</td>
+        <td>{{$atap4=number_format(($formulir1->jml_atapt2d/$formulir1->jumlah_baris)/100*$empat, 2, '.', '')}}</td>
+        <td>{{$atap5=number_format(($formulir1->jml_atapt2e/$formulir1->jumlah_baris)/100*$lima, 2, '.', '')}}</td>
+        <td>{{$atap6=number_format(($formulir1->jml_atapt2f/$formulir1->jumlah_baris)/100*$enam, 2, '.', '')}}</td>
+        <td>{{$atap7=number_format(($formulir1->jml_atapt2g/$formulir1->jumlah_baris)/100*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumatap=number_format(($atap1+$atap2+$atap3+$atap4+$atap5+$atap6+$atap7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotatap=number_format(7, 2, '.', '')}}%</td>
         <td>{{$sumtingkatatap=number_format($sumatap*$bobotatap/100, 2, '.', '')}}%</td>
@@ -236,22 +240,22 @@ th, td {
         <td rowspan="9">ARSITEKTUR</td>
         <td>Dinding /Pondasi</td>
         <td>%</td>
-        <td> {{$formulir->dinding_volume}} </td>
+        <td> {{100}} </td>
         <td>{{$dinding_tahap1con}}</td>
-        <td>{{$formulir->dinding_tahap2a}}</td>
-        <td>{{$formulir->dinding_tahap2b}}</td>
-        <td>{{$formulir->dinding_tahap2c}}</td>
-        <td>{{$formulir->dinding_tahap2d}}</td>
-        <td>{{$formulir->dinding_tahap2e}}</td>
-        <td>{{$formulir->dinding_tahap2f}}</td>
-        <td>{{$formulir->dinding_tahap2g}}</td>
-        <td>{{$dinding1=number_format($formulir->dinding_tahap2a/$formulir->dinding_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$dinding2=number_format($formulir->dinding_tahap2b/$formulir->dinding_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$dinding3=number_format($formulir->dinding_tahap2c/$formulir->dinding_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$dinding4=number_format($formulir->dinding_tahap2d/$formulir->dinding_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$dinding5=number_format($formulir->dinding_tahap2e/$formulir->dinding_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$dinding6=number_format($formulir->dinding_tahap2f/$formulir->dinding_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$dinding7=number_format($formulir->dinding_tahap2g/$formulir->dinding_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2a/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2b/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2c/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2d/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2e/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2f/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2g/$rekapdinding)*100)}}</td>
+        <td>{{$dinding1=number_format(($formulir1->jml_dindingt2a/$formulir1->jumlah_baris)/100*$satu, 2, '.', '')}}</td>
+        <td>{{$dinding2=number_format(($formulir1->jml_dindingt2b/$formulir1->jumlah_baris)/100*$dua, 2, '.', '')}}</td>
+        <td>{{$dinding3=number_format(($formulir1->jml_dindingt2c/$formulir1->jumlah_baris)/100*$tiga, 2, '.', '')}}</td>
+        <td>{{$dinding4=number_format(($formulir1->jml_dindingt2d/$formulir1->jumlah_baris)/100*$empat, 2, '.', '')}}</td>
+        <td>{{$dinding5=number_format(($formulir1->jml_dindingt2e/$formulir1->jumlah_baris)/100*$lima, 2, '.', '')}}</td>
+        <td>{{$dinding6=number_format(($formulir1->jml_dindingt2f/$formulir1->jumlah_baris)/100*$enam, 2, '.', '')}}</td>
+        <td>{{$dinding7=number_format(($formulir1->jml_dindingt2g/$formulir1->jumlah_baris)/100*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumdinding=number_format(($dinding1+$dinding2+$dinding3+$dinding4+$dinding5+$dinding6+$dinding7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotdinding=number_format(21.50, 2, '.', '')}}%</td>
         <td>{{$sumtingkatdinding=number_format($sumdinding*$bobotdinding/100, 2, '.', '')}}%</td>
@@ -305,22 +309,22 @@ th, td {
     <tr>
         <td>Kusen</td>
         <td>unit</td>
-        <td> {{$formulir->kusen_volume}} </td>
+        <td> {{$jumlah_kusen}} </td>
         <td></td>
-        <td>{{$formulir->kusen_tahap2a}}</td>
-        <td>{{$formulir->kusen_tahap2b}}</td>
-        <td>{{$formulir->kusen_tahap2c}}</td>
-        <td>{{$formulir->kusen_tahap2d}}</td>
-        <td>{{$formulir->kusen_tahap2e}}</td>
-        <td>{{$formulir->kusen_tahap2f}}</td>
-        <td>{{$formulir->kusen_tahap2g}}</td>
-        <td>{{$kusen1=number_format($formulir->kusen_tahap2a/$formulir->kusen_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$kusen2=number_format($formulir->kusen_tahap2b/$formulir->kusen_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$kusen3=number_format($formulir->kusen_tahap2c/$formulir->kusen_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$kusen4=number_format($formulir->kusen_tahap2d/$formulir->kusen_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$kusen5=number_format($formulir->kusen_tahap2e/$formulir->kusen_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$kusen6=number_format($formulir->kusen_tahap2f/$formulir->kusen_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$kusen7=number_format($formulir->kusen_tahap2g/$formulir->kusen_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{$formulir1->jml_kusent2a}}</td>
+        <td>{{$formulir1->jml_kusent2b}}</td>
+        <td>{{$formulir1->jml_kusent2c}}</td>
+        <td>{{$formulir1->jml_kusent2d}}</td>
+        <td>{{$formulir1->jml_kusent2e}}</td>
+        <td>{{$formulir1->jml_kusent2f}}</td>
+        <td>{{$formulir1->jml_kusent2g}}</td>
+        <td>{{$kusen1=number_format($formulir1->jml_kusent2a/$formulir1->jumlah_kusen*$satu, 2, '.', '')}}</td>
+        <td>{{$kusen2=number_format($formulir1->jml_kusent2b/$formulir1->jumlah_kusen*$dua, 2, '.', '')}}</td>
+        <td>{{$kusen3=number_format($formulir1->jml_kusent2c/$formulir1->jumlah_kusen*$tiga, 2, '.', '')}}</td>
+        <td>{{$kusen4=number_format($formulir1->jml_kusent2d/$formulir1->jumlah_kusen*$empat, 2, '.', '')}}</td>
+        <td>{{$kusen5=number_format($formulir1->jml_kusent2e/$formulir1->jumlah_kusen*$lima, 2, '.', '')}}</td>
+        <td>{{$kusen6=number_format($formulir1->jml_kusent2f/$formulir1->jumlah_kusen*$enam, 2, '.', '')}}</td>
+        <td>{{$kusen7=number_format($formulir1->jml_kusent2g/$formulir1->jumlah_kusen*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumkusen=number_format(($kusen1+$kusen2+$kusen3+$kusen4+$kusen5+$kusen6+$kusen7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotkusen=number_format(1, 2, '.', '')}}%</td>
         <td>{{$sumtingkatkusen=number_format($sumkusen*$bobotkusen/100, 2, '.', '')}}%</td>
@@ -328,22 +332,22 @@ th, td {
     <tr>
         <td>Pintu</td>
         <td>unit</td>
-        <td> {{$formulir->pintu_volume}} </td>
+        <td> {{$jumlah_pintu}} </td>
         <td></td>
-        <td>{{$formulir->pintu_tahap2a}}</td>
-        <td>{{$formulir->pintu_tahap2b}}</td>
-        <td>{{$formulir->pintu_tahap2c}}</td>
-        <td>{{$formulir->pintu_tahap2d}}</td>
-        <td>{{$formulir->pintu_tahap2e}}</td>
-        <td>{{$formulir->pintu_tahap2f}}</td>
-        <td>{{$formulir->pintu_tahap2g}}</td>
-        <td>{{$pintu1=number_format($formulir->pintu_tahap2a/$formulir->pintu_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$pintu2=number_format($formulir->pintu_tahap2b/$formulir->pintu_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$pintu3=number_format($formulir->pintu_tahap2c/$formulir->pintu_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$pintu4=number_format($formulir->pintu_tahap2d/$formulir->pintu_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$pintu5=number_format($formulir->pintu_tahap2e/$formulir->pintu_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$pintu6=number_format($formulir->pintu_tahap2f/$formulir->pintu_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$pintu7=number_format($formulir->pintu_tahap2g/$formulir->pintu_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{$formulir1->jml_pintut2a}}</td>
+        <td>{{$formulir1->jml_pintut2b}}</td>
+        <td>{{$formulir1->jml_pintut2c}}</td>
+        <td>{{$formulir1->jml_pintut2d}}</td>
+        <td>{{$formulir1->jml_pintut2e}}</td>
+        <td>{{$formulir1->jml_pintut2f}}</td>
+        <td>{{$formulir1->jml_pintut2g}}</td>
+        <td>{{$pintu1=number_format($formulir1->jml_pintut2a/$formulir1->jumlah_pintu*$satu, 2, '.', '')}}</td>
+        <td>{{$pintu2=number_format($formulir1->jml_pintut2b/$formulir1->jumlah_pintu*$dua, 2, '.', '')}}</td>
+        <td>{{$pintu3=number_format($formulir1->jml_pintut2c/$formulir1->jumlah_pintu*$tiga, 2, '.', '')}}</td>
+        <td>{{$pintu4=number_format($formulir1->jml_pintut2d/$formulir1->jumlah_pintu*$empat, 2, '.', '')}}</td>
+        <td>{{$pintu5=number_format($formulir1->jml_pintut2e/$formulir1->jumlah_pintu*$lima, 2, '.', '')}}</td>
+        <td>{{$pintu6=number_format($formulir1->jml_pintut2f/$formulir1->jumlah_pintu*$enam, 2, '.', '')}}</td>
+        <td>{{$pintu7=number_format($formulir1->jml_pintut2g/$formulir1->jumlah_pintu*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumpintu=number_format(($pintu1+$pintu2+$pintu3+$pintu4+$pintu5+$pintu6+$pintu7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotpintu=number_format(1.50, 2, '.', '')}}%</td>
         <td>{{$sumtingkatpintu=number_format($sumpintu*$bobotpintu/100, 2, '.', '')}}%</td>
@@ -351,22 +355,22 @@ th, td {
     <tr>
         <td>Jendela</td>
         <td>unit</td>
-        <td> {{$formulir->jendela_volume}} </td>
+        <td> {{$jumlah_jendela}} </td>
         <td></td>
-        <td>{{$formulir->jendela_tahap2a}}</td>
-        <td>{{$formulir->jendela_tahap2b}}</td>
-        <td>{{$formulir->jendela_tahap2c}}</td>
-        <td>{{$formulir->jendela_tahap2d}}</td>
-        <td>{{$formulir->jendela_tahap2e}}</td>
-        <td>{{$formulir->jendela_tahap2f}}</td>
-        <td>{{$formulir->jendela_tahap2g}}</td>
-        <td>{{$jendela1=number_format($formulir->jendela_tahap2a/$formulir->jendela_volume*$satu, 2, '.', '')}}</td>
-        <td>{{$jendela2=number_format($formulir->jendela_tahap2b/$formulir->jendela_volume*$dua, 2, '.', '')}}</td>
-        <td>{{$jendela3=number_format($formulir->jendela_tahap2c/$formulir->jendela_volume*$tiga, 2, '.', '')}}</td>
-        <td>{{$jendela4=number_format($formulir->jendela_tahap2d/$formulir->jendela_volume*$empat, 2, '.', '')}}</td>
-        <td>{{$jendela5=number_format($formulir->jendela_tahap2e/$formulir->jendela_volume*$lima, 2, '.', '')}}</td>
-        <td>{{$jendela6=number_format($formulir->jendela_tahap2f/$formulir->jendela_volume*$enam, 2, '.', '')}}</td>
-        <td>{{$jendela7=number_format($formulir->jendela_tahap2g/$formulir->jendela_volume*$tujuh, 2, '.', '')}}</td>
+        <td>{{$formulir1->jml_jendelat2a}}</td>
+        <td>{{$formulir1->jml_jendelat2b}}</td>
+        <td>{{$formulir1->jml_jendelat2c}}</td>
+        <td>{{$formulir1->jml_jendelat2d}}</td>
+        <td>{{$formulir1->jml_jendelat2e}}</td>
+        <td>{{$formulir1->jml_jendelat2f}}</td>
+        <td>{{$formulir1->jml_jendelat2g}}</td>
+        <td>{{$jendela1=number_format($formulir1->jml_jendelat2a/$formulir1->jumlah_jendela*$satu, 2, '.', '')}}</td>
+        <td>{{$jendela2=number_format($formulir1->jml_jendelat2b/$formulir1->jumlah_jendela*$dua, 2, '.', '')}}</td>
+        <td>{{$jendela3=number_format($formulir1->jml_jendelat2c/$formulir1->jumlah_jendela*$tiga, 2, '.', '')}}</td>
+        <td>{{$jendela4=number_format($formulir1->jml_jendelat2d/$formulir1->jumlah_jendela*$empat, 2, '.', '')}}</td>
+        <td>{{$jendela5=number_format($formulir1->jml_jendelat2e/$formulir1->jumlah_jendela*$lima, 2, '.', '')}}</td>
+        <td>{{$jendela6=number_format($formulir1->jml_jendelat2f/$formulir1->jumlah_jendela*$enam, 2, '.', '')}}</td>
+        <td>{{$jendela7=number_format($formulir1->jml_jendelat2g/$formulir1->jumlah_jendela*$tujuh, 2, '.', '')}}</td>
         <td>{{$sumjendela=number_format(($jendela1+$jendela2+$jendela3+$jendela4+$jendela5+$jendela6+$jendela7)*100, 0, '.', '')}}%</td>
         <td>{{$bobotjendela=number_format(2, 2, '.', '')}}%</td>
         <td>{{$sumtingkatjendela=number_format($sumjendela*$bobotjendela/100, 2, '.', '')}}%</td>
@@ -449,9 +453,9 @@ th, td {
         <td></td>
         <td colspan="7">{{$instalasi_listrik_tahap2con}}</td>
         <td colspan="7"></td>
-        <td>{{$formulir->instalasi_listrik_tahap2}}%</td>
+        <td>{{$instalasi_listrik_tahap2p}}%</td>
         <td>{{$bobotinstalasi_listrik=number_format(1, 2, '.', '')}}%</td>
-        <td>{{$sumtingkatinstalasi_listrik=number_format($formulir->instalasi_listrik_tahap2*$bobotinstalasi_listrik/100, 2, '.', '')}}%</td>
+        <td>{{$sumtingkatinstalasi_listrik=number_format($instalasi_listrik_tahap2p*$bobotinstalasi_listrik/100, 2, '.', '')}}%</td>
     </tr>
     <tr>
         <td>Instalasi Air Bersih</td>
@@ -460,14 +464,14 @@ th, td {
         <td></td>
         <td colspan="7">{{$instalasi_airbersih_tahap2con}}</td>
         <td colspan="7"></td>
-        <td>{{$formulir->instalasi_airbersih_tahap2}}%</td>
+        <td>{{$instalasi_airbersih_tahap2p}}%</td>
         <td>{{$bobotinstalasi_airbersih=number_format(1, 2, '.', '')}}%</td>
-        <td>{{$sumtingkatinstalasi_airbersih=number_format($formulir->instalasi_airbersih_tahap2*$bobotinstalasi_airbersih/100, 2, '.', '')}}%</td>
+        <td>{{$sumtingkatinstalasi_airbersih=number_format($instalasi_airbersih_tahap2p*$bobotinstalasi_airbersih/100, 2, '.', '')}}%</td>
     </tr>
     <tr>
         <td>Drainase Limbah</td>
         <td>m1</td>
-        <td> {{$formulir->drainaselimbah_volume}} </td>
+        <td> {{$jumlah_drainase}} </td>
         <td></td>
         <td>{{$formulir->drainaselimbah_tahap2a}}</td>
         <td>{{$formulir->drainaselimbah_tahap2b}}</td>
@@ -518,27 +522,27 @@ th, td {
                 $warna      = "red";
             }
 
-            if($formulir->pondasi_tahap1==1){
+            if($pondasi_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
-            }elseif($formulir->kolom_tahap1==1){
+            }elseif($kolom_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
-            }elseif($formulir->balok_tahap1==1){
+            }elseif($balok_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
-            }elseif($formulir->dinding_tahap1==1){
+            }elseif($atap_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
-            }elseif($formulir->plafond_tahap1==1){
+            }elseif($dinding_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
-            }elseif($formulir->atap_tahap1==1){
+            }elseif($plafond_tahap111==1){
                 $status="Rusak Berat";
                 $statusa="";
                 $warnaa="red";
@@ -567,7 +571,7 @@ th, td {
         <td style="border: none;" colspan="13"></td>
         <td colspan="9">KESIMPULAN TINGKAT KERUSAKAN
             MASSA BANGUNAN / RUANGAN =</td>
-        <td bgcolor="{{$warnaa}}"><b>{{$status}}</b></td>
+        <td bgcolor="{{$warnaa}}">{{$status}}</td>
     </tr>
     <tr class="atable">
         <td class="atable" colspan="23">&nbsp;</td>

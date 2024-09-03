@@ -5,15 +5,16 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasPanelShield;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +25,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'npsn',
+        'alamat_sekolah',
+        'nama_pic',
+        'nomor_pic',
+        'jenjang',
+        'status'
     ];
 
     /**
@@ -62,5 +69,10 @@ class User extends Authenticatable
     public function ruang(): HasMany
     {
         return $this->hashMany(Ruang::class);
+    }
+
+    public function formulir(): HasMany
+    {
+        return $this->hashMany(Formulir::class);
     }
 }
