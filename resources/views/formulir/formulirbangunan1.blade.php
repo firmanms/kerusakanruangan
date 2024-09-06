@@ -242,13 +242,13 @@ th, td {
         <td>%</td>
         <td> {{100}} </td>
         <td>{{$dinding_tahap1con}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2a/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2b/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2c/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2d/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2e/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2f/$rekapdinding)*100)}}</td>
-        <td>{{number_format(($formulir1->jml_dindingt2g/$rekapdinding)*100)}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2a/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2b/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2c/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2d/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2e/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2f/$rekapdinding)*100, 1, '.', '')}}</td>
+        <td>{{number_format(($formulir1->jml_dindingt2g/$rekapdinding)*100, 1, '.', '')}}</td>
         <td>{{$dinding1=number_format(($formulir1->jml_dindingt2a/$formulir1->jumlah_baris)/100*$satu, 2, '.', '')}}</td>
         <td>{{$dinding2=number_format(($formulir1->jml_dindingt2b/$formulir1->jumlah_baris)/100*$dua, 2, '.', '')}}</td>
         <td>{{$dinding3=number_format(($formulir1->jml_dindingt2c/$formulir1->jumlah_baris)/100*$tiga, 2, '.', '')}}</td>
