@@ -75,4 +75,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hashMany(Formulir::class);
     }
+
+    public function usulanrehab(): HasMany
+    {
+        return $this->hashMany(Usulanrehab::class);
+    }
 }

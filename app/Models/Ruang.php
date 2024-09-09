@@ -42,6 +42,13 @@ class Ruang extends Model
         return $this->belongsTo(Formulir::class, 'ruangs_id');
     }
 
+    public function usulanrehabs()
+    {
+        return $this->belongsTo(Usulanrehab::class, 'ruangs_id');
+    }
+
+
+
 
 
 
