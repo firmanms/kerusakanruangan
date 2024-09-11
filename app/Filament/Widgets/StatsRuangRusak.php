@@ -29,9 +29,12 @@ class StatsRuangRusak extends BaseWidget
         $totalSedang=$RuangrusakData->where('nilai_akhir', '>', 30)->where('nilai_akhir', '<=', 45)->count();
         $totalBerat=$RuangrusakData->where('nilai_akhir', '>', 45 )->count();
         return [
-            Stat::make('Ruang Rusak Ringan', $totalRingan),
-            Stat::make('Ruang Rusak Sedang', $totalSedang),
-            Stat::make('Ruang Rusak Berat', $totalBerat),
+            Stat::make('Ruang Rusak Ringan', $totalRingan)
+            ->color('success'),
+            Stat::make('Ruang Rusak Sedang', $totalSedang)
+            ->color('warning'),
+            Stat::make('Ruang Rusak Berat', $totalBerat)
+            ->color('danger'),
         ];
     }
 }

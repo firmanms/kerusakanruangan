@@ -699,6 +699,29 @@ class FormulirResource extends Resource
                     ->label('Nama Ruangan')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('nilai_akhir')
+                    ->label('Nilai AKhir')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('status_kerusakan')
+                    ->label('Status Kerusakan')
+                    ->getStateUsing(function ($record) {
+                        $nilaiAkhir = $record->nilai_akhir;
+
+                        if ($nilaiAkhir <= 30) {
+                            return 'Rusak Ringan';
+                        } elseif ($nilaiAkhir > 30 && $nilaiAkhir <= 45) {
+                            return 'Rusak Sedang';
+                        } else {
+                            return 'Rusak Berat';
+                        }
+                    })
+                    ->badge() // Menampilkan nilai sebagai badge
+                    ->colors([
+                        'success' => fn ($state) => $state === 'Rusak Ringan',
+                        'warning' => fn ($state) => $state === 'Rusak Sedang',
+                        'danger'  => fn ($state) => $state === 'Rusak Berat',
+                    ]),
                 // Tables\Columns\TextColumn::make('pondasi_tahap1')
                 //     ->numeric()
                 //     ->sortable(),

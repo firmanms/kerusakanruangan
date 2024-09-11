@@ -9,8 +9,8 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="{{ asset('frontend/assets/img/favicon.png')}}" rel="icon">
-  <link href="{{ asset('frontend/assets/img/apple-touch-icon.png ')}}" rel="apple-touch-icon">
+  <link href="{{ asset('frontend/assets/img/school.png')}}" rel="icon">
+  <link href="{{ asset('frontend/assets/img/school.png ')}}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -54,7 +54,7 @@
           {{-- <li><a href="#features">Features</a></li> --}}
           <li><a href="#faq">Faq</a></li>
           <li><a href="#contact">Kontak</a></li>
-          <li><a href="/back">Masuk</a></li>
+          <li><a href="{{url('/back')}}">Masuk</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -76,7 +76,7 @@
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
             <h1>Selamat Datang <span></span></h1>
-            <p>Simpel Kerudung Sistem Self Assesment Pelaporan Tingkat Kerusakan Gedung Pendidikan SD di Dinas Pendidikan Kab.  Bandung</p>
+            <p>Simpel Kerudung Sistem Pelaporan Tingkat Kerusakan Gedung Pendidikan SD di Dinas Pendidikan Kab.  Bandung</p>
             <div class="d-flex">
               {{-- <a href="#about" class="btn-get-started">Get Started</a>
               <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> --}}
@@ -161,7 +161,7 @@
 
 
 
-    <!-- Stats Section -->
+    <!-- Stats Section
     <section id="stats" class="stats section light-background">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -174,7 +174,7 @@
               <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
               <p>Total Gedung</p>
             </div>
-          </div><!-- End Stats Item -->
+          </div>
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="bi bi-emoji-neutral text-success"></i>
@@ -182,7 +182,7 @@
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
               <p>Rusak Ringan</p>
             </div>
-          </div><!-- End Stats Item -->
+          </div>
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="bi bi-emoji-frown text-warning"></i>
@@ -190,7 +190,7 @@
               <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
               <p>Rusak Sedang</p>
             </div>
-          </div><!-- End Stats Item -->
+          </div>
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="bi bi-emoji-tear text-danger"></i>
@@ -198,13 +198,13 @@
               <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
               <p>Rusak Berat</p>
             </div>
-          </div><!-- End Stats Item -->
+          </div>
 
         </div>
 
       </div>
 
-    </section><!-- /Stats Section -->
+    </section>/Stats Section -->
 
     <!-- Details Section -->
     <section id="details" class="details section">
@@ -276,27 +276,72 @@
 
               <div class="faq-item faq-active">
                 <i class="faq-icon bi bi-question-circle"></i>
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                <h3>Untuk bisa masuk kedalam aplikasi Simpel Kerudung, apa yang harus dilakukan sekolah pertama kali?</h3>
                 <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                  <p>Akses <a href="https://simpeldisdik.bandungkab.go.id">https://simpeldisdik.bandungkab.go.id</a> kemudian klik Simpel Kerudung</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
                 <i class="faq-icon bi bi-question-circle"></i>
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                <h3>Dari manakah username dan password bisa didapatkan oleh sekolah?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                  <p>Sekolah dapat meminta username dan password ke Dinas Pendidikan Bidang SD Seksi Sarana dan Prasarana</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
                 <i class="faq-icon bi bi-question-circle"></i>
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                <h3>Apakah hanya kepala sekolah yang bisa masuk ke dalam aplikasi ini?</h3>
                 <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                  <p>Aplikasi ini bisa selain kepala sekolah dengan seijin atau telah dapat sk pengelola data pada aplikasi ini</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Bagaimana cara menggunakan aplikasi ini? Apakah ada buku panduan yang dapat sekolah pergunakan?</h3>
+                <div class="faq-content">
+                  <p>Kami telah menyediakan buku panduan yang terdapat di dalam aplikasi ini</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Pada menu tanah, apabila sekolah belum mempunyai sertifikat tanah apakah boleh tidak di isi?</h3>
+                <div class="faq-content">
+                  <p>Apabila belum mempunyai sertifikat bisa isi dengan - dan bisa diisi alasannya di kolom keterangan</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Apabila tanah sekolah merupakan tanah carik desa, apa status kepemilikan tanah yang harus sekolah pilih?</h3>
+                <div class="faq-content">
+                  <p>Bisa pilih 'Bukan Milik'</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Apa yang harus di isi pada kolom keterangan pada kepemilikan tanah?</h3>
+                <div class="faq-content">
+                  <p>Silakan pilih sesuai keadaan, didalam aplikasi disediakan pilihan : Milik Sendiri, Pinjam, Sewa dan Bukan Milik</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <i class="faq-icon bi bi-question-circle"></i>
+                <h3>Apabila sekolah tidak mengetahui NJOP, apakah boleh untuk tidak di isi?</h3>
+                <div class="faq-content">
+                  <p>Kalau tidak mengetahui bisa diisi dengan - </p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -340,7 +385,7 @@
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Telepon</h3>
-                <p>+1 5589 55488 55</p>
+                <p>-</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -348,7 +393,7 @@
                 <i class="bi bi-whatsapp flex-shrink-0"></i>
                 <div>
                   <h3>Whatsapp</h3>
-                  <p>+1 5589 55488 55</p>
+                  <p>-</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -356,7 +401,7 @@
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email</h3>
-                <p>info@example.com</p>
+                <p>-</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -413,9 +458,9 @@
           </a>
           <div class="footer-contact pt-3">
             <p>Jl. Raya Soreang</p>
-            <p class="mt-3"><strong>Telepon:</strong> <span>+1 5589 55488 55</span></p>
-            <p class="mt-3"><strong>Whatsapp:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p class="mt-3"><strong>Telepon:</strong> <span>-</span></p>
+            <p class="mt-3"><strong>Whatsapp:</strong> <span>-</span></p>
+            <p><strong>Email:</strong> <span>-</span></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>

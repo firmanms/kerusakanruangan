@@ -30,9 +30,12 @@ class StatsUsulan extends BaseWidget
         $totalSedang=$usulanData->where('jenis_usulan','Sedang')->count();
         $totalBerat=$usulanData->where('jenis_usulan','Berat')->count();
         return [
-            Stat::make('Usulan Rehab Ringan', $totalRingan),
-            Stat::make('Usulan Rehab Sedang', $totalSedang),
-            Stat::make('Usulan Rehab Berat', $totalBerat),
+            Stat::make('Usulan Rehab Ringan', $totalRingan)
+            ->color('success'),
+            Stat::make('Usulan Rehab Sedang', $totalSedang)
+            ->color('warning'),
+            Stat::make('Usulan Rehab Berat', $totalBerat)
+            ->color('danger'),
         ];
     }
 }

@@ -61,7 +61,7 @@ class StatsOverview extends BaseWidget
 
         return [
             Stat::make('Data Tanah', $totalTanah),
-            Stat::make('Data Bangunan', $totalBangunan),
+            Stat::make('Data Gedung/Bangunan', $totalBangunan),
             Stat::make('Data Ruangan', $totalRuang),
         ];
     }
