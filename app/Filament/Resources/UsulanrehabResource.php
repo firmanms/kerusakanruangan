@@ -89,7 +89,10 @@ class UsulanrehabResource extends Resource
                         ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                         return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
                         }),
-                Forms\Components\TextInput::make('denah')
+                PdfViewerField::make('file')
+                        ->label('View the PDF')
+                        ->minHeight('40svh'),
+                Forms\Components\FileUpload::make('denah')
                     ->label('Gambar Denah (jpg,png)')
                     ->required()
                     ->image()
@@ -111,10 +114,12 @@ class UsulanrehabResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('bangunans_id')
+                Tables\Columns\TextColumn::make('bangunans.nama_bangunan')
+                    ->label('Nama Bangunan')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('ruangs_id')
+                Tables\Columns\TextColumn::make('ruangs.nama_ruang')
+                    ->label('Nama Ruangan')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jenis_usulan')
