@@ -474,4 +474,22 @@ class FormulirController extends Controller
         'balok_tahap1con', 'atap_tahap1con', 'dinding_tahap1con', 'plafond_tahap1con', 'jumlah_kolom','jumlah_balok','jumlah_kusen','jumlah_pintu','jumlah_jendela','jumlah_drainase',
                       'pondasi_tahap111','kolom_tahap111','balok_tahap111','atap_tahap111','dinding_tahap111','plafond_tahap111','rekapatap','rekapdinding','rekapplafond','rekaplantai','rekapfinishing_plafon','rekepfinishing_dinding','rekapfinishing_kusen'));
         }
+
+        public function nilai_akhir(Request $request, $id)
+    {
+        // Validate the request
+        $request->validate([
+            'nilai_akhir' => '', // Adjust validation rules as needed
+        ]);
+
+        // Find the record by id
+        $record = Formulir::findOrFail($id);
+
+        // Update only the 'alamat' field
+        $record->nilai_akhir = $request->input('nilai_akhir');
+        $record->save();
+
+        // Return a response (could be redirect, JSON, etc.)
+        return redirect()->back();
+    }
 }

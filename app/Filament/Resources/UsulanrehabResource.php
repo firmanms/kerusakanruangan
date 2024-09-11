@@ -11,6 +11,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,8 +21,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Joaopaulolndev\FilamentPdfViewer\Forms\Components\PdfViewerField;
+use Joaopaulolndev\FilamentPdfViewer\Infolists\Components\PdfViewerEntry;
 
 class UsulanrehabResource extends Resource
 {
@@ -42,7 +47,12 @@ class UsulanrehabResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Hidden::make('user_id')
-                    ->default(Auth::user()->id),
+                    ->default(fn () => Auth::user()->id) // Mengatur user_id ke ID pengguna saat ini
+                    ->disabled() // Field tidak dapat diubah
+                    ->visible(fn () => false), // Field tidak ditampilkan di form
+                Forms\Components\DatePicker::make('tgl_pengajuan')
+                    ->label('Tanggal Pengajuan')
+                    ->required(),
                 Forms\Components\Select::make('bangunans_id')
                     ->label('Bangunan')
                     // ->relationship('bangunans', 'nama_bangunan')
@@ -86,26 +96,53 @@ class UsulanrehabResource extends Resource
                     ->label('Surat Usulan .PDF')
                     ->required()
                     ->acceptedFileTypes(['application/pdf'])
-                    ->directory('srat/'.Auth::user()->id)
-                        ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                        return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
-                        }),
-                PdfViewerField::make('file')
-                        ->label('View the PDF')
-                        ->minHeight('40svh'),
+                    ->directory('surat/'.Auth::user()->id)
+                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                        return now()->timestamp . '-' . $file->getClientOriginalName(); // Gabungkan timestamp dengan nama file asli
+                    }),
                 Forms\Components\FileUpload::make('denah')
                     ->label('Gambar Denah (jpg,png)')
                     ->required()
                     ->image()
                     ->directory('denah/'.Auth::user()->id)
-                        ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                        return (string) str($file->getClientOriginalName())->prepend(now()->timestamp);
+                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                            return now()->timestamp . '-' . $file->getClientOriginalName();
                         }),
                 Forms\Components\TextInput::make('ket')
                     ->label('Keterangan')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->required()
+                    ->options([
+                        'pending' => 'Pending',
+                        'process' => 'Proses',
+                        'success' => 'Diterima',
+                        'danger' => 'Ditolak',
+                    ])
+                    ->visible(fn () => auth()->user()->hasRole('super_admin')), // Menampilkan hanya untuk super_admin
+
             ]);
+    }
+
+    public static function create(array $data)
+    {
+        // Set user_id secara eksplisit saat membuat record baru
+        $data['user_id'] = Auth::user()->id;
+
+        return parent::create($data);
+    }
+
+    public static function update(Builder $query, array $data)
+    {
+        // Pastikan user_id tidak dapat diubah oleh pengguna
+        if (isset($data['user_id'])) {
+            unset($data['user_id']);
+        }
+
+        return parent::update($query, $data);
     }
 
     public static function table(Table $table): Table
@@ -113,6 +150,11 @@ class UsulanrehabResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                    ->label('Sekolah')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('tgl_pengajuan')
+                    ->label('Tgl Pengajuan')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('bangunans.nama_bangunan')
@@ -125,6 +167,22 @@ class UsulanrehabResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('jenis_usulan')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'gray',
+                        'process' => 'warning',
+                        'success' => 'success',
+                        'danger' => 'danger',
+                    })
+                    ->formatStateUsing(fn ($state) => match ($state) {
+                        'pending' => 'Pending',
+                        'process' => 'Proses',
+                        'success' => 'Diterima',
+                        'danger' => 'Ditolak',
+                        default => 'Unknown',
+                    }),
+
                 Tables\Columns\TextColumn::make('ket')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -141,6 +199,7 @@ class UsulanrehabResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -159,6 +218,50 @@ class UsulanrehabResource extends Resource
                 }
             });
     }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('user.name')
+                    ->label('Pengguna')
+                    ->default('Pengguna tidak ditemukan'),
+
+                TextEntry::make('bangunans.nama_bangunan')
+                    ->label('Bangunan'),
+
+                TextEntry::make('ruangs.nama_ruang')
+                    ->label('Ruang'),
+
+                TextEntry::make('jenis_usulan')
+                    ->label('Jenis Usulan')
+                    ->colors([
+                        'Ringan' => 'success',
+                        'Sedang' => 'warning',
+                        'Berat' => 'danger',
+                    ]),
+
+                // FileEntry::make('surat')
+                //     ->label('Surat Usulan')
+                //     ->url(fn ($record) => $record->surat ? Storage::url($record->surat) : null),
+
+                // Menampilkan gambar denah
+                ImageEntry::make('denah')
+                    ->label('Denah')
+                    ->url(fn ($record) => $record->denah ? Storage::url($record->denah) : null)
+                    ->height('250px') // Sesuaikan ukuran gambar
+                    ->width('auto'),
+
+                TextEntry::make('ket')
+                    ->label('Keterangan'),
+                PdfViewerEntry::make('file')
+                    ->label('Surat Usulan')
+                    ->minHeight('40svh')
+                    ->fileUrl(fn ($record) => $record && $record->surat ? Storage::url($record->surat) : '') // Set the file url if you are getting a pdf without database
+                    ->columnSpanFull()
+
+            ]);
+}
 
     public static function getRelations(): array
     {

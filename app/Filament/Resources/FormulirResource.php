@@ -20,6 +20,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\Fieldset as ComponentsFieldset;
+use Filament\Tables\Grouping\Group;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
@@ -682,6 +683,10 @@ class FormulirResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->groups([
+            Group::make('user.name')
+                ->label('Sekolah'),
+        ])
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()

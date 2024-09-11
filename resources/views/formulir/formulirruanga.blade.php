@@ -551,9 +551,19 @@ th, td {
         <td colspan="5"></td>
         <td>{{$statusa}}</td>
         <td colspan="7"></td>
+
+        <form id="updateForm" action="{{ route('nilai_akhir', $formulir->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <!-- Input fields -->
+            <input type="hidden" name="id" value="{{ $formulir->id }}">
+            <input type="hidden" name="nilai_akhir" value="{{ $totalkerusakan }}" required>
+
         <td colspan="9">TOTAL NILAI KERUSAKAN
             MASSA BANGUNAN / RUANGAN=</td>
-        <td>{{$totalkerusakan}}%</td>
+        <td><a href="#" onclick="document.getElementById('updateForm').submit(); return false;" class="btn btn-primary">{{$totalkerusakan}}%</a></td>
+    </form>
     </tr>
     <tr class="atable">
         <td class="atable" colspan="23">&nbsp;</td>
