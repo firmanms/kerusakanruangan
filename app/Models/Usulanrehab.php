@@ -12,6 +12,10 @@ class Usulanrehab extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'kondisi_ruangan' => 'array',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

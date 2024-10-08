@@ -56,28 +56,28 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
-    public function tanah(): HasMany
+    public function tanah()
     {
-        return $this->hashMany(Tanah::class);
+        return $this->hasMany(Tanah::class);
     }
 
-    public function bangunan(): HasMany
+    public function bangunan()
     {
-        return $this->hashMany(Bangunan::class);
+        return $this->hasMany(Bangunan::class);
     }
 
-    public function ruang(): HasMany
+    public function ruang()
     {
-        return $this->hashMany(Ruang::class);
+        return $this->hasMany(Ruang::class);
     }
 
-    public function formulir(): HasMany
+    public function formulir()
     {
-        return $this->hashMany(Formulir::class);
+        return $this->hasMany(Formulir::class);
     }
 
-    public function usulanrehab(): HasMany
+    public function usulanrehab()
     {
-        return $this->hashMany(Usulanrehab::class);
+        return $this->hasMany(Usulanrehab::class);
     }
 }

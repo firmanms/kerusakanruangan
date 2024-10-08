@@ -36,6 +36,7 @@ class BackPanelProvider extends PanelProvider
                 'Data',
                 'Formulir',
                 'Usulan',
+                'Laporan',
                 'Master',
 
             ])
@@ -53,6 +54,11 @@ class BackPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 // Widgets\StatsOverview::class,
                 Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\StatsRuangArusak::class,
+                \App\Filament\Widgets\StatsRuangRusak::class,
+                \App\Filament\Widgets\StatsUsulan::class,
+                \App\Filament\Widgets\Users::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -80,7 +80,9 @@ class UserResource extends Resource
                 ->label('Nomor WA PIC/Operator'),
             Select::make('jenjang')
                 ->required()
-                ->options([
+                ->options(
+                    ['Kesetaraan' => 'Kesetaraan',
+                    'PAUD' => 'PAUD',
                     'SD' => 'SD',
                     'SMP' => 'SMP',
                     'SMA' => 'SMA',

@@ -178,8 +178,17 @@ class RuangResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('user.npsn')
+                    ->label('NPSN')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
+                    ->label('Nama Sekolah')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.kecamatan')
+                    ->label('Kecamatan')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('bangunans.nama_bangunan')
                     ->label('Nama Bangunan')

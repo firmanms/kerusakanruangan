@@ -132,8 +132,17 @@ class BangunanResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('user.npsn')
+                    ->label('NPSN')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
+                    ->label('Nama Sekolah')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.kecamatan')
+                    ->label('Kecamatan')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanahs.nama_tanah')
                     ->label('Nama Tanah')
@@ -184,21 +193,21 @@ class BangunanResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Action::make('custom_button')
-                ->label('F Lt.1')
-                ->icon('heroicon-o-document-text')
-                ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
-                ->openUrlInNewTab(), // Opsional: Buka di tab baru
-                Action::make('custom_button')
-                ->label('F Lt.2')
-                ->icon('heroicon-o-document-text')
-                ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
-                ->openUrlInNewTab(), // Opsional: Buka di tab baru
-                Action::make('custom_button')
-                ->label('F Lt.3/lebih')
-                ->icon('heroicon-o-document-text')
-                ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
-                ->openUrlInNewTab(), // Opsional: Buka di tab baru
+                // Action::make('custom_button')
+                // ->label('F Lt.1')
+                // ->icon('heroicon-o-document-text')
+                // ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
+                // ->openUrlInNewTab(), // Opsional: Buka di tab baru
+                // Action::make('custom_button')
+                // ->label('F Lt.2')
+                // ->icon('heroicon-o-document-text')
+                // ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
+                // ->openUrlInNewTab(), // Opsional: Buka di tab baru
+                // Action::make('custom_button')
+                // ->label('F Lt.3/lebih')
+                // ->icon('heroicon-o-document-text')
+                // ->url(fn ($record) => route('formulirbangunan1', $record->id)) // Mengarahkan ke route
+                // ->openUrlInNewTab(), // Opsional: Buka di tab baru
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -52,7 +52,8 @@ class MasterjenisprasaranaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('masterruangs_id')
+                Tables\Columns\TextColumn::make('masterruangs.nama')
+                    ->label('Jenis Ruang')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nama')

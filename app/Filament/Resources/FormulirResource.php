@@ -642,9 +642,13 @@ class FormulirResource extends Resource
                                         Forms\Components\TextInput::make('drainaselimbah_volume')
                                             ->label('Drainase Limbah (m)')
                                             ->required()
+                                            ->default(1)
+                                            ->minValue(1)
                                             ->numeric(),
                                         Forms\Components\TextInput::make('drainaselimbah_tahap2a')
                                             ->label('Tdk Rusak')
+                                            ->minValue(1)
+                                            ->default(1)
                                             ->required()
                                             ->numeric(),
                                         Forms\Components\TextInput::make('drainaselimbah_tahap2b')
@@ -688,8 +692,17 @@ class FormulirResource extends Resource
                 ->label('Sekolah'),
         ])
             ->columns([
+                Tables\Columns\TextColumn::make('user.npsn')
+                    ->label('NPSN')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
+                    ->label('Nama Sekolah')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.kecamatan')
+                    ->label('Kecamatan')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('bangunans.nama_bangunan')
                     ->label('Nama Bangunan')
@@ -698,6 +711,10 @@ class FormulirResource extends Resource
                 Tables\Columns\TextColumn::make('ruangs.nama_ruang')
                     ->label('Nama Ruangan')
                     ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('ruangs.masterruangs.nama')
+                    ->label('Jenis Ruangan')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nilai_akhir')
                     ->label('Nilai AKhir')

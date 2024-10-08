@@ -47,9 +47,10 @@ class UsulanrehabResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Hidden::make('user_id')
-                    ->default(fn () => Auth::user()->id) // Mengatur user_id ke ID pengguna saat ini
-                    ->disabled() // Field tidak dapat diubah
-                    ->visible(fn () => false), // Field tidak ditampilkan di form
+                    ->default(Auth::user()->id) // Mengatur user_id ke ID pengguna saat ini
+                    ->disabled(fn ($record) => $record !== null), // Field tidak dapat diubah saat pengeditan
+                    //->visible(fn () => false), // Field tidak ditampilkan di form
+
                 Forms\Components\DatePicker::make('tgl_pengajuan')
                     ->label('Tanggal Pengajuan')
                     ->required(),
@@ -93,7 +94,7 @@ class UsulanrehabResource extends Resource
                         'Berat' =>'Berat',
                     ]),
                 Forms\Components\FileUpload::make('surat')
-                    ->label('Surat Usulan .PDF')
+                    ->label('Surat Usulan .PDF  Maks 2 Mb')
                     ->required()
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('surat/'.Auth::user()->id)
@@ -101,11 +102,20 @@ class UsulanrehabResource extends Resource
                         return now()->timestamp . '-' . $file->getClientOriginalName(); // Gabungkan timestamp dengan nama file asli
                     }),
                 Forms\Components\FileUpload::make('denah')
-                    ->label('Gambar Denah (jpg,png)')
+                    ->label('Gambar Denah (jpg,png) Maks 2 Mb')
                     ->required()
                     ->image()
                     ->directory('denah/'.Auth::user()->id)
                     ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                            return now()->timestamp . '-' . $file->getClientOriginalName();
+                        }),
+                    Forms\Components\FileUpload::make('kondisi_ruangan')
+                        ->label('Foto Kondisi Ruangan (jpg,png) (Maks 2 Foto) (Maks 2Mb)')
+                        ->image()
+                        ->directory('kondisi_ruangan/'.Auth::user()->id)
+                        ->multiple()
+                        ->maxFiles(2)
+                        ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
                             return now()->timestamp . '-' . $file->getClientOriginalName();
                         }),
                 Forms\Components\TextInput::make('ket')
@@ -149,9 +159,17 @@ class UsulanrehabResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('user.npsn')
+                    ->label('NPSN')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Sekolah')
-                    ->numeric()
+                    ->label('Nama Sekolah')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.kecamatan')
+                    ->label('Kecamatan')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tgl_pengajuan')
                     ->label('Tgl Pengajuan')
@@ -252,12 +270,18 @@ class UsulanrehabResource extends Resource
                     ->height('250px') // Sesuaikan ukuran gambar
                     ->width('auto'),
 
+                ImageEntry::make('kondisi_ruangan')
+                    ->label('Kondisi Ruangan')
+                    ->url(fn ($record) => $record->denah ? Storage::url($record->denah) : null)
+                    ->height('250px') // Sesuaikan ukuran gambar
+                    ->width('auto'),
+
                 TextEntry::make('ket')
                     ->label('Keterangan'),
                 PdfViewerEntry::make('file')
                     ->label('Surat Usulan')
                     ->minHeight('40svh')
-                    ->fileUrl(fn ($record) => $record && $record->surat ? Storage::url($record->surat) : '') // Set the file url if you are getting a pdf without database
+                    ->fileUrl(fn ($record) => $record && $record->surat ? 'kerudung/'.Storage::url($record->surat) : '') // Set the file url if you are getting a pdf without database
                     ->columnSpanFull()
 
             ]);
