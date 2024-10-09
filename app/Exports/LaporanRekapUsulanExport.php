@@ -18,6 +18,11 @@ class LaporanRekapUsulanExport implements FromCollection, WithHeadings, WithMapp
     {
         $user = Auth::user();
 
+        // Check user role
+        if (!$user->hasRole('super_admin')) {
+            abort(403, 'Unauthorized action.'); // 403 Forbidden
+        }
+
         // Build the query
         $query = Usulanrehab::join('ruangs', 'usulanrehabs.ruangs_id', '=', 'ruangs.id')
     ->join('masterruangs', 'ruangs.masterruangs_id', '=', 'masterruangs.id')

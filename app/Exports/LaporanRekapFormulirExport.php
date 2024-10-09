@@ -14,6 +14,10 @@ class LaporanRekapFormulirExport implements FromCollection
     public function collection()
     {
         $user = Auth::user();
+        // Check user role
+        if (!$user->hasRole('super_admin')) {
+            abort(403, 'Unauthorized action.'); // 403 Forbidden
+        }
 
         // Build the query
         $query = Formulir::with('ruangs.masterruangs')
