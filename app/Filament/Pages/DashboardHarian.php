@@ -7,6 +7,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Pages\Page;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardHarian extends Page
@@ -61,11 +62,22 @@ class DashboardHarian extends Page
     public function getData(): array
     {
         // Fetch data based on the selected date range
+        $user = Auth::user();
+        // Jika pengguna adalah super_admin, tampilkan semua data usulan
+        if (auth()->user()->hasRole('super_admin')) {
         $data = DB::table('formulirs')
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
             ->whereBetween('created_at', [$this->startDate, $this->endDate])
             ->groupBy('date')
             ->get();
+        }else{
+        $data = DB::table('formulirs')
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+            ->whereBetween('created_at', [$this->startDate, $this->endDate])
+            ->where('user_id',$user->id)
+            ->groupBy('date')
+            ->get();
+        }
 
         return $data->toArray(); // Return the array
     }
@@ -73,11 +85,22 @@ class DashboardHarian extends Page
     public function getData2(): array
     {
         // Fetch data based on the selected date range
+        $user = Auth::user();
+        // Jika pengguna adalah super_admin, tampilkan semua data usulan
+        if (auth()->user()->hasRole('super_admin')) {
         $data2 = DB::table('usulanrehabs')
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
             ->whereBetween('created_at', [$this->startDate, $this->endDate])
             ->groupBy('date')
             ->get();
+        }else{
+        $data2 = DB::table('usulanrehabs')
+            ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+            ->whereBetween('created_at', [$this->startDate, $this->endDate])
+            ->where('user_id',$user->id)
+            ->groupBy('date')
+            ->get();
+        }
 
         return $data2->toArray(); // Return the array
     }

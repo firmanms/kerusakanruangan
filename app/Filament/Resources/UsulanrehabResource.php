@@ -183,6 +183,10 @@ class UsulanrehabResource extends Resource
                     ->label('Nama Ruangan')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('ruangs.masterruangs.nama')
+                    ->label('Jenis Ruangan')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('jenis_usulan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')

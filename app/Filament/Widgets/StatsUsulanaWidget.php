@@ -6,6 +6,7 @@ use Filament\Widgets\ChartWidget;
 use Filament\Forms;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class StatsUsulanaWidget extends ChartWidget
 {
@@ -23,14 +24,28 @@ class StatsUsulanaWidget extends ChartWidget
 
     protected function getData(): array
     {
-        // Retrieve data based on the selected month and year
-        $data = DB::table('formulirs')
+        $user = Auth::user();
+        // Jika pengguna adalah super_admin, tampilkan semua data usulan
+        if (auth()->user()->hasRole('super_admin')) {
+            $data = DB::table('formulirs')
             ->select(DB::raw('DATE(created_at) as date, COUNT(*) as count'))
             ->whereMonth('created_at', $this->month)
             ->whereYear('created_at', $this->year)
             ->groupBy('date')
             ->orderBy('date')
             ->get();
+        }else{
+            $data = DB::table('formulirs')
+            ->select(DB::raw('DATE(created_at) as date, COUNT(*) as count'))
+            ->whereMonth('created_at', $this->month)
+            ->whereYear('created_at', $this->year)
+            ->where('user_id',$user->id)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        }
+        // Retrieve data based on the selected month and year
+
 
         // Prepare the chart data
         $dates = [];

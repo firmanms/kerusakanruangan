@@ -2,34 +2,34 @@
 
 namespace App\Filament\Pages;
 
-use App\Exports\LaporanFormulirExport;
-use App\Models\Formulir;
+use App\Exports\LaporanUsulanExport;
 use App\Models\User;
+use App\Models\Usulanrehab;
+use Filament\Forms\Components\Select;
 use Filament\Pages\Page;
-use Filament\Forms;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class LaporanFormulir extends Page
+class LaporanUsulan extends Page
 {
     use AuthorizesRequests;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationGroup = 'Laporan Per Sekolah';
 
-    protected static ?string $title = 'Laporan Kerusakan';
+    protected static ?string $title = 'Laporan Usulan';
 
-    protected static ?string $navigationLabel = 'Laporan Form Kerusakan';
+    protected static ?string $navigationLabel = 'Laporan Usulan';
 
-    protected static ?string $modelLabel = 'Laporan Kerusakan';
+    protected static ?string $modelLabel = 'Laporan Usulan';
 
-    protected static ?string $pluralLabel = 'Laporan Kerusakan';
+    protected static ?string $pluralLabel = 'Laporan Usulan';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament.pages.laporan-formulir';
+    protected static string $view = 'filament.pages.laporan-usulan';
 
     public $user_id;
 
@@ -38,11 +38,11 @@ class LaporanFormulir extends Page
     $user = Auth::user();
 
     $options = $user->hasRole('super_admin')
-        ? Formulir::with('user')->select('user_id')->distinct()->get()
-        : Formulir::with('user')->select('user_id')->where('user_id', $user->id)->distinct()->get();
+        ? Usulanrehab::with('user')->select('user_id')->distinct()->get()
+        : Usulanrehab::with('user')->select('user_id')->where('user_id', $user->id)->distinct()->get();
 
     return [
-        Forms\Components\Select::make('user_id')
+        Select::make('user_id')
             ->label('Nama Sekolah')
             ->options(
                 $options->mapWithKeys(function ($formulir) {
@@ -65,6 +65,6 @@ class LaporanFormulir extends Page
 
 
         // Export laporan berdasarkan tahun yang dipilih
-        return Excel::download(new LaporanFormulirExport($this->user_id), 'laporan_persekolah_'.$namasekolah.'.xlsx');
+        return Excel::download(new LaporanUsulanExport($this->user_id), 'laporan_usulan_sekolah_'.$namasekolah.'.xlsx');
     }
 }
